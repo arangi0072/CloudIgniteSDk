@@ -1,15 +1,10 @@
+# configuration file for building snapshots and releases with jitpack.io
 jdk:
   - openjdk17
-
 before_install:
-  - chmod +x ./scripts/prepareJitpackEnvironment.sh
+  - sdk install java 17.0.7-open
+  - sdk use java 17.0.7-open
   - ./scripts/prepareJitpackEnvironment.sh
-
 install:
-  - mvn install:install-file \
-      -Dfile=CloudIgniteSdk-release.aar \
-      -DgroupId=com.github.arangi0072 \
-      -DartifactId=CloudIgniteSDK \
-      -Dversion=1.0 \
-      -Dpackaging=aar \
-      -DgeneratePom=true
+  - FILE="-Dfile=CloudigniteSdk-release.aar"
+  - mvn install:install-file $FILE -DgroupId=com.github.arangi0072 -DartifactId=CloudIgniteSDk -Dversion=1.0 -Dpackaging=aar -DgeneratePom=true
